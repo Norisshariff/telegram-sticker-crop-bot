@@ -5,7 +5,7 @@ import os, time
 import threading
 import uuid
 
-token = ''
+token = 'TOKEN'
 bot = telebot.TeleBot(token)
 
 def resize_image(image_path):
