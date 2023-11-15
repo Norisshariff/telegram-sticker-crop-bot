@@ -7,9 +7,9 @@ import uuid
 from rembg import remove
 from telebot import types
 
-
 token = 'TOKEN'
 bot = telebot.TeleBot(token)
+mode = 'crop' 
 
 def remove_bg_and_resize_image(image_path):
     with open(image_path, 'rb') as img_file:
@@ -18,7 +18,6 @@ def remove_bg_and_resize_image(image_path):
     with open(image_path, 'wb') as img_file:
         img_file.write(output_img)
     resize_image(image_path)
-
 
 def resize_image(image_path):
     with Image.open(image_path) as img:
@@ -41,7 +40,7 @@ def start(message):
     itembtn1 = types.KeyboardButton('/crop')
     itembtn2 = types.KeyboardButton('/size')
     markup.add(itembtn1, itembtn2)
-    bot.send_message(message.chat.id, "Hello! \nSend me an image and I'll turn it into a sticker. \nYou can use the /crop command to remove the image background. \nOr /size to adjust the image size to the Telegram sticker format.", reply_markup=markup)
+    bot.send_message(message.chat.id, "Hello! \nSend me an image and Ill turn it into a sticker. \nYou can use the /crop command to remove the image background. \nOr /size to adjust the image size to the Telegram sticker format.", reply_markup=markup)
 
 @bot.message_handler(commands=['crop', 'size'])
 def set_mode(message):
