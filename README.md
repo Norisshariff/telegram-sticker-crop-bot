@@ -1,6 +1,6 @@
 # Telegram sticker crop bot
 https://t.me/stickercropbot 
-A bot that changes the resolution of an image for adding to a sticker pack in Telegram.
+A bot that remove the image background and changes the resolution of an image for adding to a sticker pack in Telegram.
 
 ## Install
 python3 and python3-pip required:
