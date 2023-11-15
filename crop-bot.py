@@ -4,9 +4,21 @@ import io
 import os, time
 import threading
 import uuid
+from rembg import remove
+from telebot import types
+
 
 token = 'TOKEN'
 bot = telebot.TeleBot(token)
+
+def remove_bg_and_resize_image(image_path):
+    with open(image_path, 'rb') as img_file:
+        input_img = img_file.read()
+    output_img = remove(input_img)
+    with open(image_path, 'wb') as img_file:
+        img_file.write(output_img)
+    resize_image(image_path)
+
 
 def resize_image(image_path):
     with Image.open(image_path) as img:
@@ -25,7 +37,16 @@ def resize_image(image_path):
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.reply_to(message, "Hello! Send me an image and I'll make a sticker out of it.")
+    markup = types.ReplyKeyboardMarkup(row_width=2)
+    itembtn1 = types.KeyboardButton('/crop')
+    itembtn2 = types.KeyboardButton('/size')
+    markup.add(itembtn1, itembtn2)
+    bot.send_message(message.chat.id, "Hello! \nSend me an image and I'll turn it into a sticker. \nYou can use the /crop command to remove the image background. \nOr /size to adjust the image size to the Telegram sticker format.", reply_markup=markup)
+
+@bot.message_handler(commands=['crop', 'size'])
+def set_mode(message):
+    global mode
+    mode = message.text[1:]
 
 @bot.message_handler(content_types=['photo', 'sticker', 'document'])
 def handle_image(message):
@@ -48,7 +69,10 @@ def process_image(message):
         unique_filename = str(uuid.uuid4()) + '.webp'
         with open(unique_filename, 'wb') as new_file:
             new_file.write(downloaded_file)
-        resize_image(unique_filename)
+        if mode == 'crop':
+            remove_bg_and_resize_image(unique_filename)
+        elif mode == 'size':
+            resize_image(unique_filename)
         with open(unique_filename, 'rb') as img:
             bot.send_document(message.chat.id, document=img)
         os.remove(unique_filename)
