@@ -42,7 +42,7 @@ bot.set_my_commands(commands)
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    bot.send_message(message.chat.id, "Hello! \nSend me an image and Ill turn it into a sticker. \nYou can use the /crop command to remove the image background. \nOr /size to adjust the image size to the Telegram sticker format.", reply_markup=markup)
+    bot.send_message(message.chat.id, "Hello! \nSend me an image and Ill turn it into a sticker. \nYou can use the /crop command to remove the image background. \nOr /size to adjust the image size to the Telegram sticker format.")
 
 @bot.message_handler(commands=['crop', 'size'])
 def set_mode(message):
