@@ -34,12 +34,14 @@ def resize_image(image_path):
         new_img.paste(img, ((max_size - new_width) // 2, (max_size - new_height) // 2))
         new_img.save(image_path, "PNG")
 
+commands = [
+    types.BotCommand('crop', 'remove image background & adjust image size to Telegram sticker format'),
+    types.BotCommand('size', 'adjust image size to Telegram sticker format'),
+]
+bot.set_my_commands(commands)
+
 @bot.message_handler(commands=['start'])
 def start(message):
-    markup = types.ReplyKeyboardMarkup(row_width=2)
-    itembtn1 = types.KeyboardButton('/crop')
-    itembtn2 = types.KeyboardButton('/size')
-    markup.add(itembtn1, itembtn2)
     bot.send_message(message.chat.id, "Hello! \nSend me an image and Ill turn it into a sticker. \nYou can use the /crop command to remove the image background. \nOr /size to adjust the image size to the Telegram sticker format.", reply_markup=markup)
 
 @bot.message_handler(commands=['crop', 'size'])
