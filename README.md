@@ -1,23 +1,28 @@
 # Telegram sticker crop bot
 https://t.me/stickercropbot 
+
 A bot that remove the image background and changes the resolution of an image for adding to a sticker pack in Telegram.
 
 ## Install
-python3 and python3-pip required:
-- `sudo apt update`
-- `sudo apt install python3`
-- `sudo apt install python3-pip`
-  
+python3-full and python3-pip required:
+```bash
+sudo apt update && sudo apt install git screen python3-full python3-pip -y
+```
+
 Clone repo and install dependencies:
-- `git clone https://github.com/imhassla/telegram-sticker-crop-bot`
-- `cd telegram-sticker-crop-bot`
-- `pip install -r requirements.txt`
+```bash
+git clone https://github.com/imhassla/telegram-sticker-crop-bot
+cd telegram-sticker-crop-bot
+python3 -m venv env
+source env/bin/activate
+pip install -r requirements.txt
+```
 
 ## Usage
 
-in the line: token = 'TOKEN' 
-replace TOKEN to your own telegram-bot-api-token 
-- `python3 crop-bot.py` to start 
-
+replace TOKEN in script crop-bot.py to your own telegram-bot-api-token and run
+```bash
+screen python3 crop-bot.py
+```
 ## License
 This script is distributed under the MIT license. 
