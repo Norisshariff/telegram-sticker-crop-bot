@@ -1,3 +1,4 @@
 telebot
 pillow
 rembg
+python-dotenv
