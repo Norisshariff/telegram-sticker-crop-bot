@@ -77,7 +77,7 @@ def process_image(message):
         with open(unique_filename, 'rb') as img:
             bot.send_document(message.chat.id, document=img)
         os.remove(unique_filename)
-    except Exception as e:
+    except Exception:
         bot.reply_to(message, 'An error occurred while processing your image, try again')
 
 @bot.message_handler(func=lambda message: True)
@@ -87,6 +87,6 @@ def handle_other(message):
 while True:
     try:
         bot.polling(none_stop=True)
-    except Exception as e:
+    except Exception:
         print('Connection error, reconnect after 15 seconds...')
         time.sleep(15)
