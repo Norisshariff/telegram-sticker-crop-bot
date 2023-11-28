@@ -6,9 +6,12 @@ import threading
 import uuid
 from rembg import remove
 from telebot import types
+import dotenv
 
-token = 'TOKEN'
-bot = telebot.TeleBot(token)
+dotenv.load_dotenv()
+TOKEN = os.getenv('TOKEN')
+
+bot = telebot.TeleBot(TOKEN)
 mode = 'crop' 
 
 def remove_bg_and_resize_image(image_path):
