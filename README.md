@@ -20,7 +20,7 @@ pip install -r requirements.txt
 
 ## Usage
 
-Create a file called .env  and add your TOKEN and variable to this file:
+Create a file called .env  and add your TOKEN variable to this file:
 ```bash
 echo 'TOKEN=bot_token' > .env
 ```
