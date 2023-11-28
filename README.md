@@ -20,7 +20,11 @@ pip install -r requirements.txt
 
 ## Usage
 
-replace TOKEN in script crop-bot.py to your own telegram-bot-api-token and run
+Create a file called .env  and add your TOKEN and variable to this file:
+```bash
+echo 'TOKEN=bot_token' > .env
+```
+run:
 ```bash
 screen python3 crop-bot.py
 ```
