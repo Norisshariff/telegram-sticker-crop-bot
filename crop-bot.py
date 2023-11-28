@@ -78,7 +78,7 @@ def process_image(message):
             bot.send_document(message.chat.id, document=img)
         os.remove(unique_filename)
     except Exception as e:
-        bot.reply_to(message, 'An error occurred while processing your image: {}'.format(e))
+        bot.reply_to(message, 'An error occurred while processing your image, try again')
 
 @bot.message_handler(func=lambda message: True)
 def handle_other(message):
